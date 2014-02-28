@@ -31,7 +31,7 @@ if ! type grunt &> /dev/null ; then
         fi
     else
         info "grunt is available locally"
-        debug "npm version: $(grunt --version)"
+        debug "npm version: $(./node_modules/grunt-cli/bin/grunt --version)"
         grunt_command="./node_modules/grunt-cli/bin/grunt"
     fi
 else
