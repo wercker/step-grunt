@@ -72,7 +72,7 @@ result="$?"
 set -e
 
 # Fail if it is not a success or warning
-if [[ result -ne 0 && result -ne 6 ]]
+if [[ result -ne 0 ]]
 then
     warn "$result"
     fail "grunt command failed"
