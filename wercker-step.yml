@@ -1,3 +1,27 @@
 name: webpack
 version: 0.0.1
 description: webpack step
+keywords:
+  - javascript
+  - webpack
+properties:
+  config-file:
+    type: string
+    required: false
+  verbose:
+    type: boolean
+    required: false
+    default: false
+  colors:
+    type: boolean
+    required: false
+    default: false
+  fail-on-warnings:
+    type: boolean
+    required: false
+    default: false
+  display-error-details:
+    type: boolean
+    required: false
+    default: false
+  
