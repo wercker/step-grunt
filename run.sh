@@ -2,7 +2,7 @@
 
 # return true if local npm package is installed at ./node_modules, else false
 # example
-# echo "gruntacular : $(npm_package_is_installed gruntacular)"
+# echo "webpack : $(npm_package_is_installed webpack)"
 npm_package_is_installed() {
   # set to true initially
   local return_=true
@@ -12,67 +12,63 @@ npm_package_is_installed() {
   echo "$return_"
 }
 
-# First make sure grunt is installed
-if ! type grunt &> /dev/null ; then
-    # Check if it is in repo
-    if ! $(npm_package_is_installed grunt-cli) ; then
-        info "grunt-cli not installed, trying to install it through npm"
+# First make sure webpack is installed
+if ! type webpack &> /dev/null ; then
+    # Check if it is in the local node_modules repo
+    if ! $(npm_package_is_installed webpack) ; then
+        info "webpack is not installed, trying to install it through npm"
 
         if ! type npm &> /dev/null ; then
-            fail "npm not found, make sure you have npm or grunt-cli installed"
+            fail "npm not found, make sure you have npm or webpack installed"
         else
             info "npm is available"
             debug "npm version: $(npm --version)"
 
-            info "installing grunt-cli"
-            sudo npm install -g grunt-cli
-            grunt_command="grunt"
+            info "installing webpack"
+            sudo npm install -g webpack
+            webpack_command="webpack"
         fi
     else
-        info "grunt is available locally"
-        debug "grunt version: $(./node_modules/grunt-cli/bin/grunt --version)"
-        grunt_command="./node_modules/grunt-cli/bin/grunt"
+        info "webpack is available locally"
+        debug "webpack version: $(npm list webpack |grep webpack)"
+        webpack_command="./node_modules/webpack/bin/webpack.js"
     fi
 else
-    info "grunt is available"
-    debug "grunt version: $(grunt --version)"
-    grunt_command="grunt"
+    info "webpack is available"
+    debug "webpack version: $(npm list -g webpack |grep webpack)"
+    webpack_command="webpack"
 fi
 
 # Parse some variable arguments
-if [ "$WERCKER_GRUNT_DEBUG" = "true" ] ; then
-    grunt_command="$grunt_command --debug"
+if [ "$WERCKER_WEBPACK_VERBOSE" = "true" ] ; then
+    webpack_command="$webpack_command --verbose"
 fi
 
-if [ "$WERCKER_GRUNT_VERBOSE" = "true" ] ; then
-    grunt_command="$grunt_command --verbose"
+if [ "$WERCKER_COLORS" = "true" ] ; then
+    webpack_command="$webpack_command --colors"
 fi
 
-if [ "$WERCKER_GRUNT_STACK" = "true" ] ; then
-    grunt_command="$grunt_command --stack"
+if [ "$WERCKER_WEBPACK_DISPLAY_ERROR_DETAILS" = "true" ] ; then
+    webpack_command="$webpack_command --display-error-details"
 fi
 
-if [ -n "$WERCKER_GRUNT_GRUNTFILE" ] ; then
-    grunt_command="$grunt_command --gruntfile $WERCKER_GRUNT_GRUNTFILE"
+if [ -n "$WERCKER_WEBPACK_CONFIG_FILE" ] ; then
+    webpack_command="$webpack_command --config $WERCKER_WEBPACK_CONFIG_FILE"
 fi
 
-if [ -n "$WERCKER_GRUNT_TASKS" ] ; then
-    grunt_command="$grunt_command $WERCKER_GRUNT_TASKS"
-fi
-
-debug "$grunt_command"
+debug "$webpack_command"
 
 set +e
-$grunt_command
+$webpack_command
 result="$?"
 set -e
 
 if [[ $result -eq 0 ]]; then
-  success "finished $grunt_command"
-elif [[ $result -eq 6 && "$WERCKER_GRUNT_FAIL_ON_WARNINGS" != 'true' ]]; then
-  warn "grunt returned warnings, however fail-on-warnings is not true"
-  success "finished $grunt_command"
+  success "finished $webpack_command"
+elif [[ $result -eq 6 && "$WERCKER_WEBPACK_FAIL_ON_WARNINGS" != 'true' ]]; then
+  warn "webpack returned warnings, however fail-on-warnings is not true"
+  success "finished $webpack_command"
 else
-    warn "grunt exited with exit code: $result"
-    fail "grunt failed"
+    warn "webpack exited with exit code: $result"
+    fail "webpack failed"
 fi
