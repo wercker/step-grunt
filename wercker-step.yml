@@ -16,10 +16,6 @@ properties:
     type: boolean
     required: false
     default: false
-  fail-on-warnings:
-    type: boolean
-    required: false
-    default: false
   display-error-details:
     type: boolean
     required: false

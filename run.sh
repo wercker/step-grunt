@@ -63,6 +63,7 @@ $webpack_command
 result="$?"
 set -e
 
+# TODO: fail on warning flag
 if [[ $result -eq 0 ]]; then
   success "finished $webpack_command"
 elif [[ $result -eq 6 && "$WERCKER_WEBPACK_FAIL_ON_WARNINGS" != 'true' ]]; then

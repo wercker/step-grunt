@@ -34,11 +34,6 @@ build:
 - optional: true (default: false)
 - description: colored messages
 
-### fail-on-warnings
-- type: boolean
-- optional: true (default: false)
-- description: If webpack returns an error code of 6 (warning) then fail the build.
-
 ### display-error-details
 - type: boolean
 - optional: true (default: false)
