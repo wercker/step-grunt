@@ -8,7 +8,7 @@
 #             name: prepare output
 #             code: rm -rf $WERCKER_ROOT/.git
 
-box: wercker/default
-build:
-  steps:
-    - validate-wercker-step
+# box: wercker/default
+# build:
+#   steps:
+#     - validate-wercker-step
