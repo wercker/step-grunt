@@ -22,7 +22,7 @@ build:
 - type: string
 - optional: true
 - description: Specify an alternate webpack file. By default, webpack looks in the source directory for a file named `webpack.config.js`.
-- example: `config-file: webpack.config-server.js`
+- example: `config-file: webpack.config-client.js`
 
 ### verbose
 - type: boolean
