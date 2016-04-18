@@ -3,9 +3,9 @@ box:
   cmd: /bin/sh
 build:
   steps:
-    # - shellcheck:
-    #     files: run.sh
-    # - script:
-    #     name: prepare output
-    #     code: rm -rf $WERCKER_ROOT/.git
-    - validate-wercker-step
+    - shellcheck:
+        files: run.sh
+    - script:
+        name: prepare output
+        code: rm -rf $WERCKER_ROOT/.git
+    #- validate-wercker-step
