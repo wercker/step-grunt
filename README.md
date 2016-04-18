@@ -12,8 +12,8 @@ In your [wercker.yml](http://devcenter.wercker.com/articles/werckeryml/) file un
 ``` bash
 build:
   steps:
-    - webpack:
-        config-file: mywebpack.config.js
+    - mitelone/webpack@0.0.1:
+    	config-file: mywebpack.config.js
 ```
 
 ## Properties
@@ -22,7 +22,7 @@ build:
 - type: string
 - optional: true
 - description: Specify an alternate webpack file. By default, webpack looks in the source directory for a file named `webpack.config.js`.
-- example: `config: webpack.config-server.js`
+- example: `config-file: webpack.config-server.js`
 
 ### verbose
 - type: boolean
