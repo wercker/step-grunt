@@ -1,4 +1,6 @@
-box: mhart/alpine-node:5.10.1
+box: 
+  id: mhart/alpine-node:5.10.1
+  cmd: /bin/sh
 build:
   steps:
     # - shellcheck:
