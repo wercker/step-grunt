@@ -1,9 +1,0 @@
-box: mhart/alpine-node:5.10.1
-build:
-    steps:
-        - shellcheck:
-            files: run.sh
-
-        - script:
-            name: prepare output
-            code: rm -rf $WERCKER_ROOT/.git
