@@ -18,6 +18,12 @@ build:
 
 ## Properties
 
+### node-env
+- type: string
+- optional: true
+- description: Specify the `NODE_ENV` variable.
+- example: `production` or `development`
+
 ### config-file
 - type: string
 - optional: true

@@ -40,6 +40,10 @@ else
 fi
 
 # Parse some variable arguments
+if [ "$WERCKER_WEBPACK_NODE_ENV" = "true" ] ; then
+    webpack_command="NODE_ENV=$WERCKER_WEBPACK_NODE_ENV $webpack_command"
+fi
+
 if [ "$WERCKER_WEBPACK_VERBOSE" = "true" ] ; then
     webpack_command="$webpack_command --verbose"
 fi
