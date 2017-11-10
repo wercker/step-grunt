@@ -1,0 +1,19 @@
+name: grunt
+version: 3.0.0
+summary: grunt step
+properties:
+- name: debug
+  type: string
+  required: false
+- name: verbose
+  type: string
+  required: false
+- name: stack
+  type: string
+  required: false
+- name: gruntfile
+  type: string
+  required: false
+- name: tasks
+  type: string
+  required: false
